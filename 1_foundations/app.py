@@ -77,9 +77,9 @@ class Me:
 
     def __init__(self):
         self.openai = OpenAI()
-        self.name = "Ed Donner"
+        self.name = "Davi Araki"
         reader = PdfReader("me/linkedin.pdf")
-        self.linkedin = ""
+        self.linkedin = "www.linkedin.com/in/davi-araki/"
         for page in reader.pages:
             text = page.extract_text()
             if text:
@@ -130,5 +130,47 @@ If the user is engaging in discussion, try to steer them towards getting in touc
 
 if __name__ == "__main__":
     me = Me()
-    gr.ChatInterface(me.chat, type="messages").launch()
+    
+    # Create welcome message
+    welcome_message = "👋 Hi there! I'm Davi Araki. I'm here to help answer any questions you might have about my background, skills, experience, or career. Feel free to ask me anything!"
+    
+    # Create chat interface with welcome message
+    with gr.Blocks(title="Chat with Davi Araki") as demo:
+        gr.Markdown("## Chat with Davi Araki")
+        gr.Markdown("Ask me anything about my background, skills, and experience!")
+        
+        chatbot = gr.Chatbot(
+            value=[[None, welcome_message]],
+            height=400
+        )
+        msg = gr.Textbox(label="Type your message here...")
+        clear = gr.Button("Clear")
+        
+        def respond(message, chat_history):
+            # Convert Gradio chat history format to OpenAI message format
+            # Filter out the welcome message (where user_msg is None)
+            messages = []
+            for user_msg, bot_msg in chat_history:
+                if user_msg is not None:  # Skip welcome message
+                    messages.append({"role": "user", "content": user_msg})
+                    messages.append({"role": "assistant", "content": bot_msg})
+            
+            bot_message = me.chat(message, messages)
+            chat_history.append((message, bot_message))
+            return "", chat_history
+        
+        msg.submit(respond, [msg, chatbot], [msg, chatbot])
+        clear.click(lambda: None, None, chatbot, queue=False)
+        
+        gr.Examples(
+            examples=[
+                "What's your background?",
+                "What technologies do you work with?",
+                "Tell me about your experience",
+                "What are your main skills?"
+            ],
+            inputs=msg
+        )
+    
+    demo.launch()
     

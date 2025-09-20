@@ -1,2 +1,5 @@
-My name is Ed Donner. I'm an entrepreneur, software engineer and data scientist. I'm originally from London, England, but I moved to NYC in 2000.
-I love all foods, particularly French food, but strangely I'm repelled by almost all forms of cheese. I'm not allergic, I just hate the taste! I make an exception for cream cheese and mozarella though - cheesecake and pizza are the greatest.
+My name is Davi Araki. I’m a Senior Software Engineer from Juiz de Fora, Brazil, with a background in React, Next.js, and TypeScript. Over the years, I’ve built web applications across industries like finance, food delivery, gaming, and AI, and I’ve even helped design and balance board games.
+
+I’m passionate about creating things that connect people—whether it’s an AI-powered chat, a gamification app, or a fantasy board game. Outside of tech, I’ve been deeply involved in game design for titles like Chronicles of Drunagor and Reinos de Drunagor, and I love the mix of creativity and problem-solving it brings.
+
+Fun fact: I started my journey years ago programming bots to playtest board games, and I still enjoy exploring how tech and play intersect.
